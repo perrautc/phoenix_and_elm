@@ -17,24 +17,24 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 
 ### 01-Hello-World
   * Create a new phoenix application
-  `
+  ```
     mix phoenix.new phoenix_and_elm
-  `
+  ```
   * Create Contact model using phoenix.gen.model
-  `
+  ```
   mix phoenix.gen.model Contact contacts first_name last_name gender:integer birth_date:date location phone_number email headline:text picture
-  `
+  ```
   * Create the database and migrate
-  `
+  ```
   mix ecto.create
   mix ecto.migrate
-  `
+  ```
   * Install Elm
-  `
+  ```
   npm install elm elm-brunch --save
-  `
+  ```
   * Configure Brunch to watch and compile elm on change
-  `
+  ```
   // brunch-config.js
   // plugins: {
     //...
@@ -53,10 +53,11 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
         // optional: add some parameters that are passed to elm-make
         makeParameters: ['--warn']
       }
-  //}
-  `
+    }
+  ```
   * Create folder and setup initial Elm packages
-  `
+
+  ```
   $ mkdir web/elm && cd web/elm && elm-package install elm-lang/html -y
   $ touch Main.elm
   --- web/elm/Main.elm
@@ -68,9 +69,9 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   main : Html a
   main = 
     text "Hello, World!"
-  `
+  ```
   * Update main app.js to import generated javascript by Elm and render result.
-  `
+  ```
   // web/static/js/app.js
 
   import Elm from './main';
@@ -80,14 +81,14 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   if (elmDiv) {
     Elm.Main.embed(elmDiv);
   }
-  `
+  ```
   * Update phoenix template to contain elmDiv target
-  `
+  ```
 <!-- web/templates/page/index.html.eex -->
 
 <div id="elm_target"></div>
-  `
+  ```
   * start phoenix serve
-  `
+  ```
   iex -S mix phoenix.server
-  `
+  ```
